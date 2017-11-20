@@ -19,11 +19,13 @@ var installer = (packageList) => {
   }
 
   for (var package of arrayC) {
+     var packageIndex = arrayC.indexOf(package)
      var dependency = (package[0][1]).trim()
      dependency = `${dependency}: `
      if(arrayA.includes(dependency)) {
       let string = package[0].join(':')
       arrayA.push(string)
+      arrayC.splice(packageIndex, 1)
       }
   }
 };

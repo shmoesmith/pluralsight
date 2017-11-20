@@ -25,16 +25,17 @@ describe('Challenge', () => {
   })
 
   it('should return packages with a dependency to a new array', () => {
-    expect(arrayB).to.not.include("spong: ")
+    expect(arrayB).to.not.include("sponge: ")
     expect(arrayB).to.include("pants: square")
   })
 
   it('breaks up array b into an array of arrays based on the :', () => {
-   expect(arrayC[0][0]).to.have.lengthOf(2)
+   expect(arrayC[0][0][0]).to.include("pants")
+   expect(arrayC[0][0][1]).to.include("square")
  })
 
- it('finds out if the dependency is in arrayA already, if true, moves to arrayA', () => {
-   expect(arrayA).to.have.lengthOf(4)
+ it('finds out if the dependency is in arrayA already, if true, moves to arrayA and removes it from arrayC', () => {
+   expect(arrayA).to.include("sponge: ", "bob: ", "square: sponge", "star: bob")
  })
 
 });
