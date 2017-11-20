@@ -18,21 +18,23 @@ describe('Challenge', () => {
   });
 
   it('should return packages with no dependency into a new array', () => {
-    const testArray = ["sponge: ", "bob: ", "square: sponge" ];
+    let testArray = ["sponge: ", "bob: ", "pants: square", "square: sponge", "star: bob" ];
     installer(testArray);
-    expect(arrayA).to.have.lengthOf(2);
+    expect(arrayA).to.include("sponge: ");
+    expect(arrayA).to.not.include("pants: square")
   })
 
   it('should return packages with a dependency to a new array', () => {
-    const testArray2 = ["sponge: ", "bob: ", "pants: square", "square: sponge"];
-    installer(testArray2);
-    expect(arrayB).to.have.lengthOf(2);
+    expect(arrayB).to.not.include("spong: ")
+    expect(arrayB).to.include("pants: square")
   })
 
   it('breaks up array b into an array of arrays based on the :', () => {
-    const testArray2 = ["sponge: ", "bob: ", "pants: square", "square: sponge"];
-    installer(testArray2)
    expect(arrayC[0][0]).to.have.lengthOf(2)
+ })
+
+ it('finds out if the dependency is in arrayA already, if true, moves to arrayA', () => {
+   expect(arrayA).to.have.lengthOf(4)
  })
 
 });

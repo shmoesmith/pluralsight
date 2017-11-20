@@ -1,4 +1,4 @@
-let packages = ["sponge: ", "bob: ", "pants: square", "square: sponge" ];
+let packages = ["sponge: ", "bob: ", "pants: square", "square: sponge", "star: bob" ];
 let arrayA = []
 let arrayB = []
 let arrayC = []
@@ -12,9 +12,19 @@ var installer = (packageList) => {
       arrayB.push(package)
     };
   };
+
   for (var package of arrayB) {
   insideArray = package.split(':');
   arrayC.push([insideArray])
+  }
+
+  for (var package of arrayC) {
+     var dependency = (package[0][1]).trim()
+     dependency = `${dependency}: `
+     if(arrayA.includes(dependency)) {
+      let string = package[0].join(':')
+      arrayA.push(string)
+      }
   }
 };
 
