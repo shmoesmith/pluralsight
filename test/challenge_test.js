@@ -5,6 +5,7 @@ var challenge = require('../app/challenge.js');
 var installer = challenge.installer;
 var packages = challenge.packages;
 let arrayA = challenge.arrayA;
+let arrayB = challenge.arrayB;
 
 describe('Challenge', () => {
   it('makes sure the function exists', () => {
@@ -16,9 +17,15 @@ describe('Challenge', () => {
   });
 
   it('should return packages with no dependecy into a new array', () => {
-    let testArray = ["sponge: ", "bob: ", "square: sponge" ];
+    const testArray = ["sponge: ", "bob: ", "square: sponge" ];
     installer(testArray);
     expect(arrayA).to.have.lengthOf(2);
+  })
+
+  it('should return packages with a dependency to a new array', () => {
+    const testArray2 = ["sponge: ", "bob: ", "pants: square", "square: sponge"];
+    installer(testArray2);
+    expect(arrayB).to.have.lengthOf(2);
   })
 
 });
